@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">TrabalhoGps</string>
+
+    <string-array name="mapaSpinner">
+        <item>Satelite</item>
+        <item>Hybrido</item>
+        <item>Terra</item>
+        <item>Nenhum</item>
+        <item>Normal</item>
+
+    </string-array>
+    <string-array name="zoomSpinner">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
 </resources>
