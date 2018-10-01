@@ -74,7 +74,7 @@ public class MeuAdapter extends BaseAdapter{
         btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db = ConexaoDB.deleteItem(Integer.parseInt(registros.getString(registros.getColumnIndex("_id"))));
+                db = ConexaoDB.deleteItem(Integer.parseInt(id.getText().toString()));
                 
 
             }
