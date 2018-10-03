@@ -16,4 +16,12 @@ public class ConexaoDB {
         }
         return db;
     }
+
+    //deleta linha
+    public static SQLiteDatabase deleteItem(Integer id){
+        db.delete("cadastro", "_id = ?", new String[]{Integer.toString(id)});
+        return db;
+    }
+
+
 }

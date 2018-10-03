@@ -57,19 +57,23 @@ public class MeuAdapter extends BaseAdapter{
         TextView tvDescricaoElemento = (TextView) v.findViewById(R.id.tvDescricaoListar);
         ImageView ivFotoElemento = (ImageView) v.findViewById(R.id.ivFotoListar);
         Button btnExcluir = (Button) v.findViewById(R.id.btnExcluir);
+        final TextView id = (TextView) v.findViewById(R.id.tvId);
 
         registros.moveToPosition(i);
 
-        String descricaoDb = registros.getString(registros.getColumnIndex("nome"));
+        final String descricaoDb = registros.getString(registros.getColumnIndex("nome"));
         byte[] fotoDb = registros.getBlob(registros.getColumnIndex("foto"));
         Bitmap bitmapImage = BitmapFactory.decodeByteArray(fotoDb, 0, fotoDb.length);
         tvDescricaoElemento.setText(descricaoDb);
         ivFotoElemento.setImageBitmap(bitmapImage);
+        id.setText(registros.getString(registros.getColumnIndex("_id")));
 
         btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(registros.getString(registros.getColumnIndex("nome")));
+                db = ConexaoDB.deleteItem(Integer.parseInt(id.getText().toString()));
+                
+                //((EditItemsActivity) activity).refreshList();
             }
         });
 
