@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <Button
-        android:text="Pegar Loca."
+        android:text="Pegar Local."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnPegarLocalizacaoOnClick"/>

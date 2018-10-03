@@ -22,4 +22,6 @@ public class ListarActivity extends AppCompatActivity {
 
         lvRegistros.setAdapter(adapter);
     }
+
+
 }
