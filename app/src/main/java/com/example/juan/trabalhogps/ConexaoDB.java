@@ -1,6 +1,7 @@
 package com.example.juan.trabalhogps;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
 
@@ -22,6 +23,5 @@ public class ConexaoDB {
         db.delete("cadastro", "_id = ?", new String[]{Integer.toString(id)});
         return db;
     }
-
 
 }

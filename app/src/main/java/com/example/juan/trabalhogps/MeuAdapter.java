@@ -1,6 +1,7 @@
 package com.example.juan.trabalhogps;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -59,6 +60,7 @@ public class MeuAdapter extends BaseAdapter{
         Button btnExcluir = (Button) v.findViewById(R.id.btnExcluir);
         final TextView id = (TextView) v.findViewById(R.id.tvId);
 
+
         registros.moveToPosition(i);
 
         final String descricaoDb = registros.getString(registros.getColumnIndex("nome"));
@@ -72,8 +74,7 @@ public class MeuAdapter extends BaseAdapter{
             @Override
             public void onClick(View view) {
                 db = ConexaoDB.deleteItem(Integer.parseInt(id.getText().toString()));
-                
-                //((EditItemsActivity) activity).refreshList();
+
             }
         });
 
