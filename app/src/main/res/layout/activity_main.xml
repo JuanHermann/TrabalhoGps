@@ -83,6 +83,12 @@
         android:layout_height="wrap_content"
         android:onClick="btnPegarLocalizacaoOnClick"/>
 
+    <Button
+        android:text="Buscar mapa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnBuscarMapaOnClick"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

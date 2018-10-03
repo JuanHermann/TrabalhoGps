@@ -116,12 +116,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         ContentValues registro = new ContentValues();
         registro.put("nome", etNome.getText().toString());
+        registro.put("perimetro",pegarPerimetro(1,1,1,1));
+        registro.put("area",pegarArea());
         registro.put("foto", imagemBytes);
         db.insert("cadastro", null, registro);
         Toast.makeText(this, "Registro incluído com sucesso!", Toast.LENGTH_LONG).show();
 
 
     }
+
 
     public void btListrarOnClick(View view) {
         startActivity(new Intent(this, ListarActivity.class));
@@ -130,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     public void btnPegarLocalizacaoOnClick(View view) {
         locations.add(new LatLng(lat, lon));
-        tvLatitude.setText(String.valueOf( lat));
-        tvLongitude.setText(String.valueOf( lon));
+
+        Toast.makeText(this, "lat :" + lat + "long: "+lon , Toast.LENGTH_LONG).show();
     }
 
     private void setarOpcoes() {
@@ -163,8 +166,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         double a = Math.pow(Math.sin(dLat / 2), 2) + Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
         double c = 2 * Math.asin(Math.sqrt(a));
-        return R * c;
+        //return R * c;
+        return 10;
     }
+
+    private double pegarArea() {
+        return 5;
+    }
+
     private View.OnTouchListener spinnerOnTouch = new View.OnTouchListener() {
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -179,6 +188,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         lat = location.getLatitude();
         lon = location.getLongitude();
+
+        tvLatitude.setText(String.valueOf( location.getLatitude()));
+        tvLongitude.setText(String.valueOf( location.getLongitude()));
 
     }
 
@@ -195,5 +207,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onProviderDisabled(String s) {
 
+    }
+
+    public void btnBuscarMapaOnClick(View view) {
     }
 }
