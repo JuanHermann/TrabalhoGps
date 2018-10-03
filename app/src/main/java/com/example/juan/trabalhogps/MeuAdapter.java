@@ -61,7 +61,6 @@ public class MeuAdapter extends BaseAdapter{
         final TextView id = (TextView) v.findViewById(R.id.tvId);
 
 
-
         registros.moveToPosition(i);
 
         final String descricaoDb = registros.getString(registros.getColumnIndex("nome"));
@@ -75,8 +74,7 @@ public class MeuAdapter extends BaseAdapter{
             @Override
             public void onClick(View view) {
                 db = ConexaoDB.deleteItem(Integer.parseInt(id.getText().toString()));
-                notifyDataSetChanged();
-                
+
             }
         });
 

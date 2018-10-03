@@ -16,15 +16,15 @@
             android:textStyle="bold"
             android:text="Id: "/>
 
-
         <TextView
             android:id="@+id/tvId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""/>
 
-
     </LinearLayout>
+
+
 
     <TextView
         android:layout_width="fill_parent"

@@ -23,4 +23,5 @@ public class ConexaoDB {
         db.delete("cadastro", "_id = ?", new String[]{Integer.toString(id)});
         return db;
     }
+
 }
