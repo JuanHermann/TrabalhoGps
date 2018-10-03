@@ -75,8 +75,8 @@ public class MeuAdapter extends BaseAdapter{
             @Override
             public void onClick(View view) {
                 db = ConexaoDB.deleteItem(Integer.parseInt(id.getText().toString()));
+                notifyDataSetChanged();
                 
-
             }
         });
 
