@@ -56,6 +56,8 @@ public class MeuAdapter extends BaseAdapter{
         View v = inflater.inflate (R.layout.elemento_listar,null);
 
         TextView tvDescricaoElemento = (TextView) v.findViewById(R.id.tvDescricaoListar);
+        TextView tvPerimetro = (TextView) v.findViewById(R.id.tvPerimetro);
+        TextView tvArea = (TextView) v.findViewById(R.id.tvArea);
         ImageView ivFotoElemento = (ImageView) v.findViewById(R.id.ivFotoListar);
         Button btnExcluir = (Button) v.findViewById(R.id.btnExcluir);
         final TextView id = (TextView) v.findViewById(R.id.tvId);
@@ -64,9 +66,13 @@ public class MeuAdapter extends BaseAdapter{
         registros.moveToPosition(i);
 
         final String descricaoDb = registros.getString(registros.getColumnIndex("nome"));
+        final String perimetroDb = registros.getString(registros.getColumnIndex("perimetro"));
+        final String areaDb = registros.getString(registros.getColumnIndex("area"));
         byte[] fotoDb = registros.getBlob(registros.getColumnIndex("foto"));
         Bitmap bitmapImage = BitmapFactory.decodeByteArray(fotoDb, 0, fotoDb.length);
         tvDescricaoElemento.setText(descricaoDb);
+        tvPerimetro.setText(perimetroDb);
+        tvArea.setText(areaDb);
         ivFotoElemento.setImageBitmap(bitmapImage);
         id.setText(registros.getString(registros.getColumnIndex("_id")));
 

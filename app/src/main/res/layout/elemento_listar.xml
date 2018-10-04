@@ -6,25 +6,44 @@
     android:orientation="vertical">
 
     <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Id: "/>
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Id: "/>
+            android:layout_weight=".50"
+            android:textStyle="bold" android:textAlignment="center"
+            android:text="teste "/>
 
         <TextView
-            android:id="@+id/tvId"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight=".50"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:textAlignment="center"
+            android:text="teste"/>
 
     </LinearLayout>
-
-
 
     <TextView
         android:layout_width="fill_parent"
@@ -51,7 +70,7 @@
 
 
         <TextView
-            android:id="@+id/tvLat"
+            android:id="@+id/tvPerimetro"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -68,7 +87,7 @@
             android:text="Area" />
 
         <TextView
-            android:id="@+id/tvLong"
+            android:id="@+id/tvArea"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"

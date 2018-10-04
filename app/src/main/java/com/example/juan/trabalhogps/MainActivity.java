@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private EditText etNome;
     private ImageView ivFoto;
     private Bitmap imageBitmap;
-    private ArrayList<LatLng> locations;
+    private ArrayList<LatLng> locais;
     private Spinner spMapa,spZoom;
     private static final String PREF_NAME = "pref";
     private int mapa,zoom;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
 
-        locations = new ArrayList<>();
+        locais = new ArrayList<>();
         etNome = (EditText) findViewById(R.id.etNome);
         ivFoto = (ImageView) findViewById(R.id.ivFoto);
         spMapa = (Spinner) findViewById(R.id.spMapa);
@@ -132,9 +132,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
     public void btnPegarLocalizacaoOnClick(View view) {
-        locations.add(new LatLng(lat, lon));
+        locais.add(new LatLng(lat, lon));
 
-        Toast.makeText(this, "lat :" + lat + "long: "+lon , Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "lat :" + lat + "long: "+lon , Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Localização Salva!" , Toast.LENGTH_LONG).show();
     }
 
     private void setarOpcoes() {
@@ -210,5 +211,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void btnBuscarMapaOnClick(View view) {
+        for (int i =0;i<5;i++) {
+            System.out.println(i);
+            Toast.makeText(this, "lat :" + locais.get(i).latitude + "long: " + locais.get(i).latitude, Toast.LENGTH_LONG).show();
+        }
     }
 }
