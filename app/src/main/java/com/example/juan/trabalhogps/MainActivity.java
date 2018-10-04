@@ -116,13 +116,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         ContentValues registro = new ContentValues();
         registro.put("nome", etNome.getText().toString());
-        registro.put("perimetro",pegarPerimetro(1,1,1,1));
+        registro.put("perimetro",pegarPerimetro(locais.get(0).latitude,locais.get(0).longitude,locais.get(1).latitude,locais.get(1).longitude));
         registro.put("area",pegarArea());
         registro.put("foto", imagemBytes);
         db.insert("cadastro", null, registro);
         Toast.makeText(this, "Registro incluído com sucesso!", Toast.LENGTH_LONG).show();
 
-
+        etNome.setText("");
+        locais = new ArrayList<>();
     }
 
 
@@ -134,8 +135,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void btnPegarLocalizacaoOnClick(View view) {
         locais.add(new LatLng(lat, lon));
 
-        //Toast.makeText(this, "lat :" + lat + "long: "+lon , Toast.LENGTH_LONG).show();
-        Toast.makeText(this,"Localização Salva!" , Toast.LENGTH_LONG).show();
+        mostrarLocais();
+    }
+
+    private void mostrarLocais() {
+        String t = "";
+        for (int numPontos = 0;numPontos<locais.size();numPontos++) {
+            t = t + "Localização " + (numPontos + 1) + "\nlat :" + locais.get(numPontos).latitude + " | long: " + locais.get(numPontos).latitude + "\n";
+        }
+
+        Toast.makeText(this,t , Toast.LENGTH_LONG).show();
     }
 
     private void setarOpcoes() {
@@ -167,8 +176,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         double a = Math.pow(Math.sin(dLat / 2), 2) + Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
         double c = 2 * Math.asin(Math.sqrt(a));
-        //return R * c;
-        return 10;
+        return R * c;
+
     }
 
     private double pegarArea() {
@@ -211,9 +220,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void btnBuscarMapaOnClick(View view) {
-        for (int i =0;i<5;i++) {
-            System.out.println(i);
-            Toast.makeText(this, "lat :" + locais.get(i).latitude + "long: " + locais.get(i).latitude, Toast.LENGTH_LONG).show();
-        }
+        
+    }
+
+    public void btnExcluirLocalizacaoOnClick(View view) {
+
+
+         int i =locais.size();
+
+         if(i>0) {
+             locais.remove(i - 1);
+             Toast.makeText(this, "Ultima localização excluida!", Toast.LENGTH_LONG).show();
+         }else{
+             Toast.makeText(this, "Nenhum ponto para excluir!", Toast.LENGTH_LONG).show();
+
+         }
+
     }
 }

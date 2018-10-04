@@ -55,7 +55,7 @@ public class MeuAdapter extends BaseAdapter{
 
         View v = inflater.inflate (R.layout.elemento_listar,null);
 
-        TextView tvDescricaoElemento = (TextView) v.findViewById(R.id.tvDescricaoListar);
+        TextView tvDescricaoElemento = (TextView) v.findViewById(R.id.tvNome);
         TextView tvPerimetro = (TextView) v.findViewById(R.id.tvPerimetro);
         TextView tvArea = (TextView) v.findViewById(R.id.tvArea);
         ImageView ivFotoElemento = (ImageView) v.findViewById(R.id.ivFotoListar);
