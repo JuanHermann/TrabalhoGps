@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         db =  ConexaoDB.getConnection(this);
-
-
-
+        
         locais = new ArrayList<>();
         etNome = (EditText) findViewById(R.id.etNome);
         ivFoto = (ImageView) findViewById(R.id.ivFoto);
