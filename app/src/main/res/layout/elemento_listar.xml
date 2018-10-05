@@ -76,11 +76,6 @@
             android:textAlignment="center"
             android:text="0" />
 
-
-
-
-
-
         <TextView
             android:id="@+id/tvArea"
             android:layout_width="0dp"

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         db =  ConexaoDB.getConnection(this);
-        
+
         locais = new ArrayList<>();
         etNome = (EditText) findViewById(R.id.etNome);
         ivFoto = (ImageView) findViewById(R.id.ivFoto);
@@ -63,16 +63,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         tvLatitude = (TextView) findViewById(R.id.tvLatitude);
         tvLongitude = (TextView) findViewById(R.id.tvLongitude);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.zoomSpinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spZoom.setAdapter(adapter);
-
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.mapaSpinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spMapa.setAdapter(adapter2);
-
-        spMapa.setOnTouchListener(spinnerOnTouch);
-        spZoom.setOnTouchListener(spinnerOnTouch);
         setarOpcoes();
 
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -135,9 +125,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void btnPegarLocalizacaoOnClick(View view) {
         locais.add(new LatLng(lat, lon));
 
-        if(locais.size()<3 && btnBuscarMapa.isEnabled()==true){
-            btnBuscarMapa.setEnabled(false);
-        }else if(locais.size()>=3 && btnBuscarMapa.isEnabled()==false){
+        if(locais.size()>=3 && btnBuscarMapa.isEnabled()==false){
             btnBuscarMapa.setEnabled(true);
         }
 
@@ -154,6 +142,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void setarOpcoes() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.zoomSpinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spZoom.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.mapaSpinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spMapa.setAdapter(adapter2);
+
+        spMapa.setOnTouchListener(spinnerOnTouch);
+        spZoom.setOnTouchListener(spinnerOnTouch);
+
         SharedPreferences settings = this.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
         zoom = settings.getInt("zoom",0);
         mapa = settings.getInt("mapa",0);
@@ -253,6 +252,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
              Toast.makeText(this, "Nenhum ponto para excluir!", Toast.LENGTH_LONG).show();
 
          }
+        if(locais.size()<3 && btnBuscarMapa.isEnabled()==true){
+            btnBuscarMapa.setEnabled(false);
+        }
 
     }
 }
