@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private TextView tvLatitude;
     private TextView tvLongitude;
     private double lat =0,lon=0;
+    private Button btnBuscarMapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         ivFoto = (ImageView) findViewById(R.id.ivFoto);
         spMapa = (Spinner) findViewById(R.id.spMapa);
         spZoom = (Spinner) findViewById(R.id.spZoom);
+        btnBuscarMapa = (Button) findViewById(R.id.btnBuscarMapa);
         tvLatitude = (TextView) findViewById(R.id.tvLatitude);
         tvLongitude = (TextView) findViewById(R.id.tvLongitude);
 
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         ContentValues registro = new ContentValues();
         registro.put("nome", etNome.getText().toString());
-        registro.put("perimetro",pegarPerimetro(locais.get(0).latitude,locais.get(0).longitude,locais.get(1).latitude,locais.get(1).longitude));
+        registro.put("perimetro",pegarPerimetro());
         registro.put("area",pegarArea());
         registro.put("foto", imagemBytes);
         db.insert("cadastro", null, registro);
@@ -134,6 +136,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     public void btnPegarLocalizacaoOnClick(View view) {
         locais.add(new LatLng(lat, lon));
+
+        if(locais.size()<3 && btnBuscarMapa.isEnabled()==true){
+            btnBuscarMapa.setEnabled(false);
+        }else if(locais.size()>=3 && btnBuscarMapa.isEnabled()==false){
+            btnBuscarMapa.setEnabled(true);
+        }
 
         mostrarLocais();
     }
@@ -167,7 +175,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         editor.commit();
     }
-    public  double pegarPerimetro(double lat1, double lon1, double lat2, double lon2) {
+    public  double pegarPerimetro(){
+        double peri =0.0;
+        for(int i =0;i<locais.size();i++){
+            if(i+1==locais.size()){
+                peri = peri + calcularDistancia(locais.get(0).latitude,locais.get(0).longitude,locais.get(i).latitude,locais.get(i).longitude);
+            }else{
+                peri = peri + calcularDistancia(locais.get(i).latitude,locais.get(i).longitude,locais.get(i).latitude,locais.get(i).longitude);
+            }
+        }
+        return peri;
+    }
+
+    public double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
         int R = 6371; // Radius of the earth
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
