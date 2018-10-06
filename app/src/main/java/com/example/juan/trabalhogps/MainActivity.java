@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
@@ -30,6 +31,9 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void btSalvarRegistroOnClick(View view) {
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         imageBitmap.compress(Bitmap.CompressFormat.JPEG,100, stream);
         byte imagemBytes[] = stream.toByteArray();
@@ -237,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void btnBuscarMapaOnClick(View view) {
-        
+        new ConexaoThread().start();
     }
 
     public void btnExcluirLocalizacaoOnClick(View view) {
@@ -256,5 +261,39 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             btnBuscarMapa.setEnabled(false);
         }
 
+    }
+
+    class ConexaoThread extends Thread{
+        public void run(){
+
+
+
+            try {
+
+                String latitude = tvLatitude.getText().toString();
+                String longitude = tvLongitude.getText().toString();
+
+                String endereco = "http://maps.googleapis.com/maps/api/staticmap?center=45,45.2+8&zoom=15&size=900x900&sensor=false";
+
+                URL url = new URL(endereco);
+                URLConnection con = url.openConnection();
+
+                InputStream in = con.getInputStream();
+
+                final Bitmap bmp = BitmapFactory.decodeStream(in);
+
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ivFoto.setImageBitmap(bmp);
+
+                    }
+                });
+
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }

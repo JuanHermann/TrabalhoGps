@@ -51,12 +51,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:text="Carregando..."
             android:layout_width="0dp"
             android:layout_weight=".50"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:id="@+id/tvLatitude"/>
         <TextView
+            android:text="Carregando..."
             android:layout_width="0dp"
             android:layout_weight=".50"
             android:layout_height="wrap_content"
@@ -102,6 +104,10 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"/>
     </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <Button
     android:text="Pegar Local."
     android:layout_width="wrap_content"
@@ -114,6 +120,7 @@
         android:layout_height="wrap_content"
         android:onClick="btnExcluirLocalizacaoOnClick"/>
 
+
     <Button
         android:id="@+id/btnBuscarMapa"
         android:text="Buscar mapa"
@@ -121,28 +128,17 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:onClick="btnBuscarMapaOnClick"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-
-        <Button
-            android:id="@+id/btTirarFoto"
-            android:layout_width="wrap_content"
-            android:text="Tirar Foto"
-            android:onClick="btTirarFotoOnClick"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:textSize="15sp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="5dp"
-            />
-
         <Button
             android:id="@+id/btSalvarRegistro"
             android:layout_width="wrap_content"
-            android:text="Salvar Registro"
+            android:text="Salvar"
             android:onClick="btSalvarRegistroOnClick"
             android:layout_gravity="center_vertical|center_horizontal"
             android:textSize="15sp"
