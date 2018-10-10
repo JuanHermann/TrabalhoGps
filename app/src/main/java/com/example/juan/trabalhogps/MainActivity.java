@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
         db =  ConexaoDB.getConnection(this);
-
         locais = new ArrayList<>();
         etNome = (EditText) findViewById(R.id.etNome);
         ivFoto = (ImageView) findViewById(R.id.ivFoto);
@@ -106,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void btSalvarRegistroOnClick(View view) {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //
+        ivFoto.buildDrawingCache();
+        imageBitmap = ivFoto.getDrawingCache();
+        //
         imageBitmap.compress(Bitmap.CompressFormat.JPEG,100, stream);
         byte imagemBytes[] = stream.toByteArray();
 
@@ -265,9 +269,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     class ConexaoThread extends Thread{
         public void run(){
-
-
-
             try {
 
                 String latitude = tvLatitude.getText().toString();
